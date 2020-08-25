@@ -5,7 +5,6 @@ Initializing RubiksNet-Large variant "rubiks3d". num_frames=8
 => RubiksShift3D
 => tier: large
 => variant: rubiks3d
-=> param: 8.5M
 => eval mode: 1-clip
 video 0 done, total 0/24777, average 0.442 sec/video, moving Prec@1 63.750 Prec@5 87.500
 video 1600 done, total 1600/24777, average 0.027 sec/video, moving Prec@1 58.333 Prec@5 83.452
