@@ -5,7 +5,6 @@ Initializing RubiksNet-Tiny variant "rubiks3d". num_frames=8
 => RubiksShift3D
 => tier: tiny
 => variant: rubiks3d
-=> param: 1.9M
 => eval mode: 1-clip
 video 0 done, total 0/24777, average 0.397 sec/video, moving Prec@1 56.250 Prec@5 85.000
 video 1600 done, total 1600/24777, average 0.021 sec/video, moving Prec@1 54.940 Prec@5 82.560

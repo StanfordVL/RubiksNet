@@ -91,8 +91,6 @@ def main():
     net = RubiksNet.load_pretrained(args.pretrained)
     print(f"=> tier: {net.tier}")
     print(f"=> variant: {net.variant}")
-    param = sum(x.numel() for x in net.parameters())
-    print(f"=> param: {param / 1e6:.1f}M")
 
     if args.two_clips:
         twice_sample = True

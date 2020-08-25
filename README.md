@@ -84,7 +84,7 @@ For the [Something-Something-V2 benchmark](https://20bn.com/datasets/something-s
 
 | Model                          | Input  | 2-Clip Top-1 | 2-Clip Top-5 | #Param. | FLOPs | Test Log | Pretrained |
 | ------------------------------ | ------ | ------------ | -----------  | ------- |       ----- | -------- | ---------- | 
-| RubiksNet-<br>Large-<br>AQ (Budget=0.125)      | 8      | 61.6         | 86.7         | 8.6M    | 15.7G       | [1-clip](scripts/eval_logs/ssv2_large_aq_1clip.log)<br>[2-clip](scripts/eval_logs/ssv2_large_aq_2clip.log) | [model link](pretrained/ssv2_large_aq_budget0.125.pth.tar)|
+| RubiksNet-<br>Large-<br>AQ (Budget=0.125)      | 8      | 61.6         | 86.7         | 8.5M    | 15.7G       | [1-clip](scripts/eval_logs/ssv2_large_aq_1clip.log)<br>[2-clip](scripts/eval_logs/ssv2_large_aq_2clip.log) | [model link](pretrained/ssv2_large_aq_budget0.125.pth.tar)|
 | RubiksNet-<br>Large                | 8      | 61.7         | 87.3         | 8.5M    | 15.8G       | [1-clip](scripts/eval_logs/ssv2_large_1clip.log)<br>[2-clip](scripts/eval_logs/ssv2_large_2clip.log) | [model link](pretrained/ssv2_large.pth.tar) |
 | RubiksNet-<br>Medium               | 8      | 60.8         | 86.9         | 6.2M    | 11.2G       | [1-clip](scripts/eval_logs/ssv2_medium_1clip.log)<br>[2-clip](scripts/eval_logs/ssv2_medium_2clip.log) | [model link](pretrained/ssv2_medium.pth.tar) |
 | RubiksNet-<br>Small                | 8      | 59.8         | 86.2         | 3.6M    | 6.8G        | [1-clip](scripts/eval_logs/ssv2_small_1clip.log)<br>[2-clip](scripts/eval_logs/ssv2_small_2clip.log) | [model link](pretrained/ssv2_small.pth.tar) |

@@ -6,7 +6,6 @@ RubiksNet attention shift (before block.conv2)
 => setup forward prop for temporal attention shift
 => tier: large
 => variant: attention
-=> param: 8.6M
 => eval mode: 2-clip
 video 0 done, total 0/24777, average 0.819 sec/video, moving Prec@1 67.500 Prec@5 91.250
 video 1600 done, total 1600/24777, average 0.062 sec/video, moving Prec@1 61.905 Prec@5 86.131
