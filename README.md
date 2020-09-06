@@ -92,7 +92,19 @@ For the [Something-Something-V2 benchmark](https://20bn.com/datasets/something-s
 
 ### Kinetics
 
-We also provide pretrained models on the [Kinetics dataset](https://arxiv.org/abs/1705.07750), which follow the *pretraining* protocol in [prior work](https://github.com/mit-han-lab/temporal-shift-module) -- see the supplementary material for details. All four tiers of RubiksNet can be found at `pretrained/kinetics_{large,medium,small,tiny}.pth.tar`. They can be used to finetune models for UCF-101 and HMDB-51 action recognition tasks, as well as on your own datasets.
+We also provide pretrained models on the [Kinetics dataset](https://arxiv.org/abs/1705.07750), which follow the *pretraining* protocol in [prior work](https://github.com/mit-han-lab/temporal-shift-module) -- see the supplementary material for details. All four tiers of RubiksNet can be found at `pretrained/kinetics_{large,medium,small,tiny}.pth.tar`. 
+
+Our CUDA implementation includes accelerated gradient calculation on GPUs. 
+We provide an example script to finetune the pretrained kinetics checkpoints on your own dataset. 
+
+```bash
+python scripts/example_finetune.py --gpu 0 --pretrained-path pretrained/kinetics_tiny.pth.tar
+``` 
+
+The script contains a dummy dataset that generates random videos. You can replace 
+it with your own data loader. If you run the above script, you should see RubiksNet-tiny 
+gradually overfitting the artificial training data. 
+
 
 ## Testing 
 
@@ -118,6 +130,7 @@ python test_models.py somethingv2 \
 	--pretrained=pretrained/ssv2_large.pth.tar \
 	--batch-size=80 -j 8 
 ```
+
 
 ## Citation
 
