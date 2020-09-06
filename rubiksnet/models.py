@@ -45,9 +45,9 @@ class RubiksNet(nn.Module):
             raise NotImplementedError(f"Unknown tier {tier}")
 
         self._prepare_backbone()
-        feature_dim = getattr(self.backbone, self.backbone.last_layer_name).in_features
+        self.feature_dim = getattr(self.backbone, self.backbone.last_layer_name).in_features
         setattr(self.backbone, self.backbone.last_layer_name, nn.Identity())
-        self.new_fc = nn.Linear(feature_dim, num_classes)
+        self.new_fc = nn.Linear(self.feature_dim, num_classes)
 
     @classmethod
     def load_pretrained(cls, ckpt_path):
@@ -60,6 +60,9 @@ class RubiksNet(nn.Module):
         )
         net.load_state_dict(ckpt['model'])
         return net
+
+    def replace_new_fc(self, num_classes):
+        self.new_fc = nn.Linear(self.feature_dim, num_classes)
 
     def _prepare_backbone(self):
         num_frames = self.num_frames
