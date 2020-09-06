@@ -107,7 +107,6 @@ class RubiksShift3D(RubiksShiftBase):
         )
 
 
-# TODO: delete
 def create_3d_from_2d(
     module_2d, init_mode="tsm", normalize_t_factor=1.0, quantize=False
 ):

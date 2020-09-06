@@ -105,6 +105,8 @@ The script contains a dummy dataset that generates random videos. You can replac
 it with your own data loader. If you run the above script, you should see RubiksNet-tiny 
 gradually overfitting the artificial training data. 
 
+With minor modifications, RubiksNet should be largely compatible with video action recognition pipelines in other related repos.
+
 
 ## Testing 
 

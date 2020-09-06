@@ -8,6 +8,7 @@ import argparse
 
 from rubiksnet.transforms import *
 from rubiksnet.models import RubiksNet
+from rubiksnet.shiftlib import RubiksShift2D, RubiksShiftBase
 
 
 class ExampleTrainer:
@@ -17,6 +18,7 @@ class ExampleTrainer:
         batch_size,
         gpu,
         lr,
+        lr_shift_mult,
         momentum,
         weight_decay,
         total_epochs,
@@ -30,8 +32,11 @@ class ExampleTrainer:
         self.train_dataloader = self.create_dataset_loader("train")
         self.test_dataloader = self.create_dataset_loader("test")
         self.model = self.create_model()
-        self.optimizer = optim.SGD(
-            self.model.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay
+        self.optimizer = self.create_optimizer(
+            lr=lr,
+            lr_shift_mult=lr_shift_mult,
+            momentum=momentum,
+            weight_decay=weight_decay,
         )
         self.criterion = nn.CrossEntropyLoss()
 
@@ -40,6 +45,23 @@ class ExampleTrainer:
         net.replace_new_fc(self.num_classes)
         net.to(self.device)
         return net
+
+    def create_optimizer(self, lr, lr_shift_mult, momentum, weight_decay):
+        shift_params = []
+        regular_params = []
+        for name, param in self.model.named_parameters():
+            if name.endswith('shift'):
+                shift_params.append(param)
+            else:
+                regular_params.append(param)
+
+        param_groups = [
+            {"params": shift_params, "lr": lr * lr_shift_mult},
+            {"params": regular_params},
+        ]
+        return optim.SGD(
+            param_groups, lr=lr, momentum=momentum, weight_decay=weight_decay
+        )
 
     def create_dataset_loader(self, mode):
         dataset = ExampleVideoDatasets(
@@ -170,6 +192,13 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--lr", type=float, default=1e-3)
+    parser.add_argument(
+        "--lr-shift-mult",
+        type=float,
+        default=0.1,
+        help="Shift layers typically need a lower learning rate. "
+        "Good values are 0.1 or 0.01 * base LR",
+    )
     parser.add_argument("--momentum", type=float, default=0.9)
     parser.add_argument("--weight-decay", type=float, default=1e-4)
     parser.add_argument("--total-epochs", type=int, default=100)
